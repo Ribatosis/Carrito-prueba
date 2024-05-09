@@ -25,6 +25,7 @@ const productos = {
 4. mirar el monto total de la compra*/
 let carrito = [];
 let continuar = true;
+let total = 0;
 
 while (continuar) {
     console.log("------------------- Menú -------------------");
@@ -35,19 +36,23 @@ while (continuar) {
     console.log("4. Mirar el monto total de la compra        ");
     console.log("5. Salir del programa                       ");   
 
-    let opcion = parseInt(prompt("Ingrese una opcion, digite unicamente un numero: "))
+    let opcion = parseInt(prompt("Ingrese una opcion, digite unicamente un numero: "));
 
     switch (opcion) {
         case 1:
             console.log("Todos los productos disponibles para hacer la compra son: ");
             Object.entries(productos).forEach(([key, value]) => {
-                console.log(key,": ", value)
+                console.log(`${key} ${value}`)
             });
             break;
         
         case 2:
             let userProduct = prompt("Ingrese el producto que desea añadir: ");
-            carrito.push(userProduct, productos[userProduct]);
+        
+            userProduct.toLowerCase();
+            carrito.push(userProduct);
+            total += productos[userProduct]
+        
             break;
         
         case 3:
@@ -55,7 +60,7 @@ while (continuar) {
             break;
 
         case 4:
-            
+            console.log(`El total de su compra es: ${total}`);
             break;
 
         case 5:
